@@ -65,7 +65,7 @@ var dashboardChart = new Chart(ctx, {
                 'rgba(255, 255, 255, 1)',
                 'rgba(255, 255, 255, 1)'
             ],
-            borderWidth: 8 // Increase the border width
+            borderWidth: 5 // Increase the border width
         }]
     },
     options: {
@@ -99,17 +99,17 @@ var dashboardChart = new Chart(ctx, {
         labels: ["Red", "Orange",],
         datasets: [{
             label: '# of Votes',
-            data: [30,100],
+            data: [79,21],
             backgroundColor: [
-                'rgba(231, 76, 60, 1)',
                 'rgba(255, 164, 46, 1)',
+                'rgba(231, 76, 60, 1)',
 
             ],
             borderColor: [
                 'rgba(255, 255, 255, 1)',
                 'rgba(255, 255, 255, 1)',
             ],
-            borderWidth: 8 // Increase the border width
+            borderWidth: 5 // Increase the border width
         }]
     },
     options: {
@@ -139,17 +139,17 @@ var ctx = document.getElementById("CPU_usage");
         labels: ["blue", "green",],
         datasets: [{
             label: '# of Votes',
-            data: [30,100],
+            data: [60,40],
             backgroundColor: [
-                'rgba(231, 76, 60, 1)',
                 'rgba(255, 164, 46, 1)',
+                'rgba(231, 76, 60, 1)',
 
             ],
             borderColor: [
                 'rgba(255, 255, 255, 1)',
                 'rgba(255, 255, 255, 1)',
             ],
-            borderWidth: 8 // Increase the border width
+            borderWidth: 5 // Increase the border width
         }]
     },
     options: {
@@ -179,17 +179,17 @@ var ctx = document.getElementById("network_traffic");
         labels: ["a", "b",],
         datasets: [{
             label: '# of Votes',
-            data: [40,100],
+            data: [40,60],
             backgroundColor: [
-                'rgba(231, 76, 60, 1)',
                 'rgba(255, 164, 46, 1)',
+                'rgba(231, 76, 60, 1)',
 
             ],
             borderColor: [
                 'rgba(255, 255, 255, 1)',
                 'rgba(255, 255, 255, 1)',
             ],
-            borderWidth: 8 // Increase the border width
+            borderWidth: 5 // Increase the border width
         }]
     },
     options: {
@@ -400,7 +400,7 @@ var ctx = document.getElementById("network_traffic");
         </div>
 
         
-        <div class="container2">
+        <div class="container2" style="margin-top: 5%;">
                 <div style="display: flex; flex-direction: row; justify-content: flex-start; width: 150px;">
                     <canvas class="row-4" id="storage" ></canvas>
                     <canvas class="row-4" id="DB_storage"></canvas>
@@ -413,11 +413,11 @@ var ctx = document.getElementById("network_traffic");
     </div>
 
 
-    <div class="container-table" style="-ms-overflow-style: none; -webkit-scrollbardisplay: none; margin-left: 5%; margin-top: 1%;" >
+    <div class="container-table" style="-ms-overflow-style: none; -webkit-scrollbardisplay: none; margin-left: 5%; margin-top: 1%;" >미처리 탐지건수({{dect_count}}건)
         <div class="row-6"
             style="display: flex; overflow-y: scroll; width: 750px; height: 350px; overflow-y:auto; overflow-x:hidden">
             <table class="table table-hover  caption-top mse-5 text-center">
-                <caption id="dect-table-caption" style="font-size: 18px;">미처리 탐지건수({{dect_count}}건)</caption>
+                <caption id="dect-table-caption" style="font-size: 18px;"></caption>
                 <thead style="background-color: #3B82F6; color: #ffffff; font-size: 14px;">
                     <tr>
                         <th>번호</th>
@@ -445,11 +445,11 @@ var ctx = document.getElementById("network_traffic");
         </div>
 
   
-    <div class="container-table">
+    <div class="container-table">미처리 사유서({{report_count}}건)
         <div class="row-4"
             style="display: flex; overflow-y: scroll; width: 750px; height:350px; overflow-y:auto; overflow-x:hidden">
             <table class="table table-hover  caption-top mse-5 text-center">
-                <caption id="report-table-caption" style="font-size: 18px;">미처리 사유서({{report_count}}건)</caption>
+                <caption id="report-table-caption" style="font-size: 18px;"></caption>
                 <thead style="background-color: #3B82F6; color: #ffffff; font-size: 14px;">
                     <tr>
                         <th>번호</th>

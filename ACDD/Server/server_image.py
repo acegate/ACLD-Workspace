@@ -45,7 +45,7 @@ class Server:
             try:
                 print('>> Server Wait!!')
                 self.__client_socket, self.__addr = self.get_server_socket().accept()
-                self.set_alive(True)
+                self.set_alive(1)
                 self.get_util().create_folder(self.get_client_ip())
                 self.get_client_socket().settimeout(10000)
                 thread = threading.Thread(target=self.receiveTarget)
@@ -90,7 +90,7 @@ class Server:
                 break
 
     def agent_OFF(self, result_data):
-        self.set_alive(False)
+        self.set_alive(0)
         agent_no = self.connectDB.select_identify(self.result_data['IP'], self.result_data['MACAddress'])
         self.connectDB.update_agent(self.is_alive(), agent_no)
         self.get_client_socket().close()

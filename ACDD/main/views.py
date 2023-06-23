@@ -260,8 +260,8 @@ def addDepart(request):
         return JsonResponse(reqData)
 
 
-        
-
+def process_txt(request):
+    return render(request, 'main/process_txt.html')
 
 
 

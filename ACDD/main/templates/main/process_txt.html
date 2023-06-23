@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<script>
+    function sendConfirmation() {
+        if (confirm("사유서를 보내시겠습니까?")) {
+            // 사용자가 확인을 눌렀을 때의 동작
+            // 여기에 사유서를 보내는 로직
+            alert("사유서를 보냈습니다."); // 보내기 완료 메시지
+        } else {
+            // 사용자가 취소를 눌렀을 때의 동작
+
+        }
+    }
+
+
+</script>
+
+
+<td>
+    <button class="btn mt-5" style="background-color: #BFDBFE; color: #3B82F6; margin-left: 8%;" onclick="sendConfirmation()">사유서 보내기</button>
+</td>
+
+
+<div class="container" style="display: flex;">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="position-relative text-center" style="margin-top: 5%;">
+                캠사진 이미지
+                <img src="/static/app/assets/images/treee.jpg" class="img-thumbnail" alt="캠사진 이미지">
+            </div>
+        </div>
+        
+   
+            <div class="position-relative text-center col" style="margin-top: 5%;">
+                바탕화면 이미지
+                <img src="/static/app/assets/images/background.jpg" class="img-thumbnail" alt="바탕화면 이미지">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container2 col-md-6" style="margin: 2em auto; padding: 2em; border-left: solid 5px #e9b3a3; background-color: #f5f5f5; box-shadow: 3px 1px 4px rgba(0, 0, 0, 0.2);">
+<textarea name="사유서" id="사유서" cols="75" rows="10" style=" border: 1px solid #ffffff;">사유서 : </textarea>
+</div>
+
+    
+{% endblock content %}
