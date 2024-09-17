@@ -1,5 +1,6 @@
 package com.example.company.config;
 
+import com.example.company.jwt.JWTFilter;
 import com.example.company.jwt.LoginFilter;
 import com.example.company.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -52,13 +53,16 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/login", "/signup", "/logout").permitAll()
+                        .requestMatchers("/admin").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
+            .addFilterBefore(new JWTFilter(tokenProvider), LoginFilter.class)
             .addFilterAt(new LoginFilter(authenticationManager(configuration), tokenProvider), UsernamePasswordAuthenticationFilter.class)
             .formLogin((form) -> form.disable())
             .csrf((auth) -> auth.disable())
             .httpBasic((auth) -> auth.disable())
-            .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+            .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .logout();
 
         return http.build();
     }

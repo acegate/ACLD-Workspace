@@ -5,6 +5,7 @@ import com.example.company.dto.JoinRequest;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.parameters.P;
 
 import java.util.Arrays;
 
@@ -33,9 +34,19 @@ public class User {
         this.userRole = UserRole.ROLE_ADMIN;
     }
 
+    public User(String email, String password, String role) {
+        this.email = email;
+        this.password = password;
+        this.userRole = findUserRole(role);
+    }
+
     public User(String email, String role) {
         this.email = email;
-        this.userRole = Arrays.stream(UserRole.values())
+        this.userRole = findUserRole(role);
+    }
+
+    private UserRole findUserRole(String role) {
+        return Arrays.stream(UserRole.values())
                 .filter(item -> item.name().equals(role))
                 .findFirst()
                 .orElseThrow(NullPointerException::new);
