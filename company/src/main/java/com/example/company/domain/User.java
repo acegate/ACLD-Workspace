@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.Arrays;
+
 @Getter
 @Entity
 @Table(name = "users")
@@ -29,6 +31,14 @@ public class User {
         this.email = joinRequest.getEmail();
         this.password = joinRequest.getPassword();
         this.userRole = UserRole.ROLE_ADMIN;
+    }
+
+    public User(String email, String role) {
+        this.email = email;
+        this.userRole = Arrays.stream(UserRole.values())
+                .filter(item -> item.name().equals(role))
+                .findFirst()
+                .orElseThrow(NullPointerException::new);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.example.company.config;
 
 import com.example.company.jwt.LoginFilter;
+import com.example.company.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,6 +28,7 @@ import static org.springframework.boot.autoconfigure.security.servlet.PathReques
 public class WebSecurityConfig {
 
     private final AuthenticationConfiguration configuration;
+    private final TokenProvider tokenProvider;
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
@@ -52,7 +54,7 @@ public class WebSecurityConfig {
                         .requestMatchers("/login", "/signup", "/logout").permitAll()
                         .anyRequest().authenticated()
                 )
-            .addFilterAt(new LoginFilter(authenticationManager(configuration)), UsernamePasswordAuthenticationFilter.class)
+            .addFilterAt(new LoginFilter(authenticationManager(configuration), tokenProvider), UsernamePasswordAuthenticationFilter.class)
             .formLogin((form) -> form.disable())
             .csrf((auth) -> auth.disable())
             .httpBasic((auth) -> auth.disable())
