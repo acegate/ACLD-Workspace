@@ -1,21 +1,17 @@
 package com.example.company.domain;
 
 import com.example.company.domain.key.UserKey;
-import com.example.company.dto.JoinDTO;
+import com.example.company.dto.JoinRequest;
 import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.List;
-
+@Getter
 @Entity
 @Table(name = "users")
 @IdClass(UserKey.class)
 @NoArgsConstructor
-public class User implements UserDetails {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,50 +25,10 @@ public class User implements UserDetails {
     @Enumerated(value = EnumType.STRING)
     private UserRole userRole;
 
-
-
-    public User(JoinDTO joinDTO) {
-        this.email = joinDTO.getEmail();
-        this.password = joinDTO.getPassword();
+    public User(JoinRequest joinRequest) {
+        this.email = joinRequest.getEmail();
+        this.password = joinRequest.getPassword();
         this.userRole = UserRole.ROLE_ADMIN;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(userRole.name()));
-    }
-
-    @Override
-    public String getPassword() {
-        return this.password;
-    }
-
-    @Override
-    public String getUsername() {
-        return this.email;
-    }
-
-    public Long getUser_no() {
-        return user_no;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return UserDetails.super.isAccountNonExpired();
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return UserDetails.super.isAccountNonLocked();
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return UserDetails.super.isCredentialsNonExpired();
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return UserDetails.super.isEnabled();
-    }
 }

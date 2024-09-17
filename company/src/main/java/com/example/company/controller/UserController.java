@@ -1,19 +1,10 @@
 package com.example.company.controller;
 
-import com.example.company.domain.User;
-import com.example.company.dto.AuthResponse;
-import com.example.company.dto.LoginRequest;
-import com.example.company.service.TokenProvider;
+import com.example.company.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.time.Duration;
 
 @Controller
 @RequestMapping("/login")

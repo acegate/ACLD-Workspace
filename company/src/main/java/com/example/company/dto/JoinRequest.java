@@ -1,16 +1,13 @@
 package com.example.company.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoginRequest {
-
+public class JoinRequest {
     private String email;
     private String password;
 }

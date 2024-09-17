@@ -1,7 +1,7 @@
 package com.example.company.service;
 
 import com.example.company.domain.User;
-import com.example.company.dto.JoinDTO;
+import com.example.company.dto.JoinRequest;
 import com.example.company.repository.UserRepository;
 import com.example.company.utils.PatternUtils;
 import lombok.RequiredArgsConstructor;
@@ -18,13 +18,13 @@ public class JoinService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final PatternUtils patternUtils;
 
-    public void joinProcess(JoinDTO joinDTO) {
+    public User joinProcess(JoinRequest joinRequest) {
 
-        String email = joinDTO.getEmail();
-        String password = joinDTO.getPassword();
-        joinDTO.setPassword(bCryptPasswordEncoder.encode(password));
+        String email = joinRequest.getEmail();
+        String password = joinRequest.getPassword();
+        joinRequest.setPassword(bCryptPasswordEncoder.encode(password));
         String checkEmail = patternUtils.checkEmail(email);
-        joinDTO.setEmail(checkEmail);
+        joinRequest.setEmail(checkEmail);
 
         boolean existUser = userRepository.findByEmail(email)
                 .isPresent();
@@ -33,7 +33,7 @@ public class JoinService {
             throw new IllegalArgumentException("존재하는 유저입니다.");
         }
 
-        User user = new User(joinDTO);
-        userRepository.save(user);
+        User user = new User(joinRequest);
+        return userRepository.save(user);
     }
 }

@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 @Configuration
 public class PatternUtils {
-    private static final String EMAIL_PATTERN = "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$";
+    private static final String EMAIL_PATTERN = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
 
     public String checkEmail(String email) {
         boolean match = Pattern.matches(EMAIL_PATTERN, email);
