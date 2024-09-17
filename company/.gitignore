@@ -6,7 +6,6 @@ build/
 !**/src/test/**/build/
 *-jwt.yml
 
-
 ### STS ###
 .apt_generated
 .classpath

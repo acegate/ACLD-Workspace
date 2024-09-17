@@ -2,16 +2,15 @@ package com.example.company.service;
 
 import com.example.company.domain.JwtProperties;
 import com.example.company.domain.User;
-import io.jsonwebtoken.Header;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.util.Date;
 
-@Service
+@Configuration
 @RequiredArgsConstructor
 public class TokenProvider {
 
@@ -31,12 +30,9 @@ public class TokenProvider {
                 .setIssuedAt(now)
                 .setExpiration(expire)
                 .setSubject(user.getUsername())
-                .claim("id", user.getUserNo())
+                .claim("id", user.getUser_no())
+
                 .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
                 .compact();
     }
-
-
-
-
 }

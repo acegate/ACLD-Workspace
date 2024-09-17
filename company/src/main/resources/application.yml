@@ -1,9 +1,19 @@
+server:
+  port: 8000
+
+
 spring:
   application:
     name: company
-  devtools:
-    livereload:
-      enabled=true:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+        show_sql: true
   h2:
     console:
       enabled: true
@@ -14,9 +24,9 @@ spring:
 
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:~/test
+    url: jdbc:h2:mem:testdb
     username: sa
-    password: 1234
+    password:
 
 
 
